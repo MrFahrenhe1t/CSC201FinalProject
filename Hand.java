@@ -54,6 +54,15 @@ public class Hand {
         }
         return three;
     }
+    public boolean isFourOfAKind() {
+        boolean four = false;
+        for (int i = 0; i < numberOfCards.length; i++) {
+            if (numberOfCards[i] == 4) {
+                four = true;
+            }
+        }
+        return four;
+    }
     public boolean isFullHouse() {
         boolean fullHouse = false;
         if((this.getNumberOfPairs() != 0) && this.isThreeOfAKind()) {
