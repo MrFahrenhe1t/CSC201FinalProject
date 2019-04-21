@@ -7,34 +7,55 @@ public class Card {
     private char value;
     private int intValue;
     private char suit;
-
-    Card(String card) {
+    /** Constructor with arguments.
+     * 
+     * @param card constructor takes a String containing card information.
+     */
+    public Card(String card) {
         char[] array = card.toCharArray();
         setValue(array[0]);
         setIntValue(array[0]);
         setSuit(array[1]);
     }
-
+    /** Set the value of the card with a new char.
+     * 
+     * @param newValue new character for the value (2, 3, 4, 5, 6, 7, 8, 9, T, J, Q, K, A).
+     */
     public void setValue(char newValue) {
         value = newValue;
     }
-
+    /** Converts the character value of the card to an int value and sets the intValue characteristic.
+     * 
+     * @param newValue new character for the value.
+     */
     public void setIntValue(char newValue) {
         intValue = valueToInt(newValue);
     }
-
+    /** Sets the suit of the card.
+     * 
+     * @param newSuit a character for the suit of the card (H, D, C, S).
+     */
     public void setSuit(char newSuit) {
         suit = newSuit;
     }
-
+    /** Returns the char value of the card.
+     * 
+     * @return value of card as a char
+     */
     public char getValue() {
         return value;
     }
-
+    /** Returns the integer value of the card.
+     * 
+     * @return int value of the card
+     */
     public int getIntValue() {
         return intValue;
     }
-
+    /** Returns the suit of the card.
+     * 
+     * @return char representing the suit of the card
+     */
     public char getSuit() {
         return suit;
     }
@@ -57,7 +78,7 @@ public class Card {
     /** Method to compare the suits of two cards.
      * 
      * @param other another card object to compare this card object to
-     * @return true if the two cards are the same suit, false otherwise.
+     * @return true if the two cards are the same suit, false otherwise
      */
     public boolean compareSuit(Card other) {
         boolean sameSuit = false;
@@ -66,6 +87,9 @@ public class Card {
         }
         return sameSuit;
     }
+    /** Returns a string representation of a card object.
+     *  @return a string with the value and suit of the card
+     */
     public String toString() {
         return "" + value + suit;
     }
