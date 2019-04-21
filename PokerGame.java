@@ -33,30 +33,34 @@ public class PokerGame {
         String fileName = "pokerhands.txt";
         java.io.File file = new java.io.File(fileName);
         Scanner input = new Scanner(file);
-        String stringHands = input.nextLine();
-        System.out.println(stringHands);
-        String[] playerHands = stringHands.split(" ");
         int handsize = 5;
         Card[] player1 = new Card[handsize];
         Card[] player2 = new Card[handsize];
-        int player1Count = 0;
-        int player2Count = 0;
-        for(int i = 0; i < playerHands.length; i++) {
-            System.out.println(playerHands[i]);
-            if (i < 5) {
-                player1[player1Count] = new Card(playerHands[i]);
-                player1Count++;
-            } else {
-                player2[player2Count] = new Card(playerHands[i]);
-                player2Count++;
+        int count = 0;
+        do {
+            count++;
+            String stringHands = input.nextLine();
+            System.out.println(stringHands);
+            String[] playerHands = stringHands.split(" ");
+            int player1Count = 0;
+            int player2Count = 0;
+            for(int i = 0; i < playerHands.length; i++) {
+                if (i < 5) {
+                    player1[player1Count] = new Card(playerHands[i]);
+                    player1Count++;
+                } else {
+                    player2[player2Count] = new Card(playerHands[i]);
+                    player2Count++;
+                }
             }
-        }
-        for (int j = 0; j < player1.length; j++) {
-            System.out.println("Player 1: " + player1[j]);
-            System.out.println("Player 2: " + player2[j]);    
-        }
+            // for (int j = 0; j < player1.length; j++) {
+            //     System.out.println("Player 1: " + player1[j]);
+            //     System.out.println("Player 2: " + player2[j]);    
+            // }
 
-        System.out.println(player1[1].compareValue(player2[1]));
+            System.out.println(player1[0].compareValue(player2[0]));
+    } while (input.hasNextLine());
+    System.out.println(count);
         input.close();
 
 
