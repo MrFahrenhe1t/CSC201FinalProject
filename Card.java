@@ -66,6 +66,9 @@ public class Card {
         }
         return sameSuit;
     }
+    public String toString() {
+        return "" + value + suit;
+    }
     /** Method to convert the char value of the cards to an integer value. */
     private int valueToInt(char value) {
         int intValue = 0;

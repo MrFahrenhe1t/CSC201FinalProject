@@ -36,17 +36,18 @@ public class PokerGame {
         String stringHands = input.nextLine();
         System.out.println(stringHands);
         String[] playerHands = stringHands.split(" ");
-        String[] player1 = new String[5];
-        String[] player2 = new String[5];
+        int handsize = 5;
+        Card[] player1 = new Card[handsize];
+        Card[] player2 = new Card[handsize];
         int player1Count = 0;
         int player2Count = 0;
         for(int i = 0; i < playerHands.length; i++) {
             System.out.println(playerHands[i]);
             if (i < 5) {
-                player1[player1Count] = playerHands[i];
+                player1[player1Count] = new Card(playerHands[i]);
                 player1Count++;
             } else {
-                player2[player2Count] = playerHands[i];
+                player2[player2Count] = new Card(playerHands[i]);
                 player2Count++;
             }
         }
@@ -54,6 +55,8 @@ public class PokerGame {
             System.out.println("Player 1: " + player1[j]);
             System.out.println("Player 2: " + player2[j]);    
         }
+
+        System.out.println(player1[1].compareValue(player2[1]));
         input.close();
 
 
