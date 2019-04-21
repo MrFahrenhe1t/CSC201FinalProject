@@ -117,21 +117,4 @@ public class Hand {
         }
         return card;
     }
-    // private boolean hasPair() {
-    //     boolean pair = false;
-    //     for(int i = 1; i < hand.length; i++) {
-    //         if((hand[0] == hand[i]) && (i != 0)) {
-    //             pair = true;
-    //         } else if ((hand[1] == hand[i]) && (i != 1)) {
-    //             pair = true;
-    //         } else if ((hand[2] == hand[i]) && (i != 2)) {
-    //             pair = true;
-    //         } else if ((hand[3] == hand[i]) && (i != 3)) {
-    //             pair = true;
-    //         } else {
-    //             pair = false;
-    //         }
-    //     }
-    //     return pair;
-    // }
 }
