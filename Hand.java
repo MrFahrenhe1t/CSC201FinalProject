@@ -1,7 +1,7 @@
 /**This class will be a set of cards. Going to have a value based on what the hand is, and a method for comparing two hands to one another to see which one is higher */
 public class Hand {
     public static void main(String[] args) {
-        Hand testHand = new Hand("5C 4D 3D 7C 2S".split(" "));
+        Hand testHand = new Hand("JC TC AC QC KC".split(" "));
         testHand.printHand();
         System.out.println("");
         System.out.println(testHand.toString());
@@ -10,6 +10,7 @@ public class Hand {
         System.out.println("Three of a kind? " + testHand.isThreeOfAKind());
         System.out.println("Is this hand a full house? " + testHand.isFullHouse());
         System.out.println("Is this hand a straight? " + testHand.isStraight());
+        System.out.println("Is this hand a Royal Flush? " + testHand.isRoyalFlush());
     }
     private Card[] hand = new Card[5];
     private int handRank;
@@ -86,6 +87,13 @@ public class Hand {
         }
         return straight;
     }
+public boolean isRoyalFlush() {
+    boolean royalFlush = false;
+    if(this.isStraight() && this.isFlush() && (hand[0].getValue() == 'A')) {
+        royalFlush = true;
+    }
+    return royalFlush;
+}
     
     public int[] getNumberOfCards() {
         return numberOfCards;
@@ -95,7 +103,7 @@ public class Hand {
         String output = "";
         for (int i = 2; i < numberOfCards.length; i ++) {
             if (numberOfCards[i] != 0) {
-                output = output + intToChar(i) + " : " + numberOfCards[i] + ". ";
+                output = output + intToChar(i) + " : " + numberOfCards[i] + "; ";
             }
         }
         return output;
