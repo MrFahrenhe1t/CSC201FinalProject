@@ -10,7 +10,6 @@ public class Hand {
         System.out.println("Three of a kind? " + testHand.isThreeOfAKind());
         System.out.println("Is this hand a full house? " + testHand.isFullHouse());
         System.out.println("Is this hand a straight? " + testHand.isStraight());
-        System.out.println("Is this hand a Royal Flush? " + testHand.isRoyalFlush());
     }
     private Card[] hand = new Card[5];
     private int handRank;
@@ -87,13 +86,6 @@ public class Hand {
         }
         return straight;
     }
-public boolean isRoyalFlush() {
-    boolean royalFlush = false;
-    if(this.isStraight() && this.isFlush() && (hand[0].getValue() == 'A')) {
-        royalFlush = true;
-    }
-    return royalFlush;
-}
     
     public int[] getNumberOfCards() {
         return numberOfCards;
