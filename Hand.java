@@ -1,13 +1,15 @@
 /**This class will be a set of cards. Going to have a value based on what the hand is, and a method for comparing two hands to one another to see which one is higher */
 public class Hand {
     public static void main(String[] args) {
-        Hand testHand = new Hand("5C AD 5D AC AS".split(" "));
+        Hand testHand = new Hand("5C 4D 3D 7C 2S".split(" "));
         testHand.printHand();
+        System.out.println("");
         System.out.println(testHand.toString());
         System.out.println("Is the hand a flush? " + testHand.isFlush());
         System.out.println("Number of pairs: " + testHand.getNumberOfPairs());
         System.out.println("Three of a kind? " + testHand.isThreeOfAKind());
         System.out.println("Is this hand a full house? " + testHand.isFullHouse());
+        System.out.println("Is this hand a straight? " + testHand.isStraight());
     }
     private Card[] hand = new Card[5];
     private int handRank;
@@ -72,6 +74,18 @@ public class Hand {
         }
         return fullHouse;
     }
+    public boolean isStraight() {
+        boolean straight = false;
+        for (int i = 1; i < hand.length; i++) {
+            if ((hand[i - 1].getIntValue() - hand[i].getIntValue()) == 1) {
+                straight = true;
+            } else {
+                straight = false;
+                break;
+            }
+        }
+        return straight;
+    }
     
     public int[] getNumberOfCards() {
         return numberOfCards;
@@ -91,7 +105,7 @@ public class Hand {
             System.out.print("" + hand[i].getValue() + hand[i].getSuit() + " ");
         }
     }
-    /*This is where I left off...*/
+    /**Private function to sort the hand from highest card to lowest card. */
     private void sortHand() {
         Card currentMax;
         int currentMaxIndex;
