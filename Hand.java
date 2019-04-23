@@ -2,6 +2,7 @@
 public class Hand {
     public static void main(String[] args) {
         Hand testHand = new Hand("5C AD 5D AC AS".split(" "));
+        testHand.printHand();
         System.out.println(testHand.toString());
         System.out.println("Is the hand a flush? " + testHand.isFlush());
         System.out.println("Number of pairs: " + testHand.getNumberOfPairs());
@@ -17,6 +18,7 @@ public class Hand {
             hand[i] = new Card(initialHand[i]);
         }
         countCards();
+        sortHand();
     }
 
     // private void setHandRank() {
@@ -84,14 +86,30 @@ public class Hand {
         }
         return output;
     }
+    public void printHand() {
+        for (int i = 0; i < hand.length; i ++) {
+            System.out.print("" + hand[i].getValue() + hand[i].getSuit() + " ");
+        }
+    }
     /*This is where I left off...*/
-    // private void sortHand() {
-    //     Card[] tempArray = new Card[5];
-    //     Card temp = hand[0];
-    //     for (int i = 0; i < hand.length; i++) {
-    //         if (hand[i].getIntValue() >)
-    //     }
-    // }
+    private void sortHand() {
+        Card currentMax;
+        int currentMaxIndex;
+        for (int i = 0; i < hand.length; i++) {
+            currentMax = hand[i];
+            currentMaxIndex = i;
+            for (int j = i + 1; j < hand.length; j++) {
+                if(currentMax.compareValue(hand[j]) < 0) {
+                    currentMax = hand[j];
+                    currentMaxIndex = j;
+                }
+            }
+            if (currentMaxIndex != i) {
+                hand[currentMaxIndex] = hand[i];
+                hand[i] = currentMax;
+            }
+        }
+    }
 
     private static char intToChar(int value) {
         char card;
