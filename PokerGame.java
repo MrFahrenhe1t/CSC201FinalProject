@@ -34,9 +34,12 @@ public class PokerGame {
         java.io.File file = new java.io.File(fileName);
         Scanner input = new Scanner(file);
         int handsize = 5;
-        Card[] player1 = new Card[handsize];
-        Card[] player2 = new Card[handsize];
+        String[] player1 = new String[handsize];
+        String[] player2 = new String[handsize];
         int count = 0;
+        int player1Wins = 0;
+        int player2Wins = 0;
+        int draws = 0;
         do {
             count++;
             String stringHands = input.nextLine();
@@ -46,22 +49,29 @@ public class PokerGame {
             int player2Count = 0;
             for(int i = 0; i < playerHands.length; i++) {
                 if (i < 5) {
-                    player1[player1Count] = new Card(playerHands[i]);
+                    player1[player1Count] = playerHands[i];
                     player1Count++;
                 } else {
-                    player2[player2Count] = new Card(playerHands[i]);
+                    player2[player2Count] = playerHands[i];
                     player2Count++;
                 }
             }
-            // for (int j = 0; j < player1.length; j++) {
-            //     System.out.println("Player 1: " + player1[j]);
-            //     System.out.println("Player 2: " + player2[j]);    
-            // }
-
-            System.out.println(player1[0].compareValue(player2[0]));
+            Hand player1Hand = new Hand(player1);
+            Hand player2Hand = new Hand(player2);
+            if (player1Hand.compareHands(player2Hand) == 1) {
+                player1Wins++;
+            } else if (player1Hand.compareHands(player2Hand) == -1) {
+                player2Wins++;
+            } else {
+                draws++;
+            }
     } while (input.hasNextLine());
-    System.out.println(count);
-        input.close();
+    System.out.println("Hands of poker played: " + count);
+    System.out.println("Hands player1 won: " + player1Wins);
+    System.out.println("Hands player 2 won: " + player2Wins);
+    System.out.println("Draws: " + draws);
+
+    input.close();
 
 
 

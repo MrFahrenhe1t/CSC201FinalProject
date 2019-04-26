@@ -1,8 +1,8 @@
 /**This class will be a set of cards. Going to have a value based on what the hand is, and a method for comparing two hands to one another to see which one is higher */
 public class Hand {
     public static void main(String[] args) {
-        Hand testHand = new Hand("7C 3C 2H AC KC".split(" "));
-        Hand otherHand = new Hand("2S 2S 7H 4S 6S".split(" "));
+        Hand testHand = new Hand("AC AC 2H 2C 2C".split(" "));
+        Hand otherHand = new Hand("2S 2S 3H 3S 3S".split(" "));
         testHand.printHand();
         System.out.println("");
         System.out.println(testHand.toString());
@@ -28,30 +28,158 @@ public class Hand {
         setHandRank();
     }
 
-    private void setHandRank() {//This isn't quite finished yet. Need to add an algorithm that makes it so a pair or 4's is a higher rank than a pair of 2's, etc.
+    private void setHandRank() {
         handRank = 0;
         if (isRoyalFlush()) {//Royal Flush
             handRank = 1;
         } else if (isStraight() && isFlush()) {//Straight Flush
             handRank = 2;
         } else if (isFourOfAKind()) {//Four of a Kind
-            handRank = 3;
+            switch (this.getFourOfAKindValue()) {
+                case 14://four Aces
+                handRank = 3;
+                break;
+                case 13://Four Kings
+                handRank = 4;
+                break;
+                case 12://Four Queens
+                handRank = 5;
+                break;
+                case 11://Four Jacks
+                handRank = 6;
+                break;
+                case 10://Four 10's
+                handRank = 7;
+                break;
+                case 9://Four 9's
+                handRank = 8;
+                break;
+                case 8://Four 8's
+                handRank = 9;
+                break;
+                case 7://Four 7's
+                handRank = 10;
+                break;
+                case 6://Four 6's
+                handRank = 11;
+                break;
+                case 5://Four 5's
+                handRank = 12;
+                break;
+                case 4://Four 4's
+                handRank = 13;
+                break;
+                case 3://Four 3's
+                handRank = 14;
+                break;
+                case 2://Four 2's
+                handRank = 15;
+                break;
+                default:
+                handRank = 1000000;
+            }
         } else if (isFullHouse()) {//Full House
-            handRank = 4;
+            handRank = 16;
         } else if (isFlush()) {//Flush
-            handRank = 5;
+            handRank = 17;
         } else if (isStraight()) {//Straight
-            handRank = 6;
+            handRank = 18;
         } else if (isThreeOfAKind()) {//Three of a Kind
-            handRank = 7;
+            switch (this.getThreeOfAKindValue()) {
+                case 14://Three Aces
+                handRank = 19;
+                break;
+                case 13://Three Kings
+                handRank = 20;
+                break;
+                case 12://Three Queens
+                handRank = 21;
+                break;
+                case 11://Three Jacks
+                handRank = 22;
+                break;
+                case 10://Three 10's
+                handRank = 23;
+                break;
+                case 9://Three 9's
+                handRank = 24;
+                break;
+                case 8://Three 8's
+                handRank = 25;
+                break;
+                case 7://Three 7's
+                handRank = 26;
+                break;
+                case 6://Three 6's
+                handRank = 27;
+                break;
+                case 5://Three 5's
+                handRank = 28;
+                break;
+                case 4://Three 4's
+                handRank = 29;
+                break;
+                case 3://Three 3's
+                handRank = 30;
+                break;
+                case 2://Three 2's
+                handRank = 31;
+                break;
+                default:
+                handRank = 1000000;
+            }
         } else if (getNumberOfPairs() == 2) {//Two Pair
-            handRank = 8;
-        } else if (getNumberOfPairs() == 1) {//One Pair
-            handRank = 9;
+            handRank = 32;
+        } else if (getNumberOfPairs() == 1) {//Pair
+            switch (this.getHighestPairValue()) {
+                case 14://Pair of Aces
+                handRank = 33;
+                break;
+                case 13://Pair of Kings
+                handRank = 34;
+                break;
+                case 12://Pair of Queens
+                handRank = 35;
+                break;
+                case 11://Pair of Jacks
+                handRank = 36;
+                break;
+                case 10://Pair of10's
+                handRank = 37;
+                break;
+                case 9://Pair of 9's
+                handRank = 38;
+                break;
+                case 8://Pair of 8's
+                handRank = 39;
+                break;
+                case 7://Pair of 7's
+                handRank = 40;
+                break;
+                case 6://Pair of 6's
+                handRank = 41;
+                break;
+                case 5://Pair of 5's
+                handRank = 42;
+                break;
+                case 4://Pair of 4's
+                handRank = 43;
+                break;
+                case 3://Pair of 3's
+                handRank = 44;
+                break;
+                case 2://Pair of 2's
+                handRank = 45;
+                break;
+                default:
+                handRank = 1000000;
+            }
+
         } else {//High Card
-            handRank = 10;
+            handRank = 46;
         }
     }
+
 
     public int getHandRank() {
         return handRank;
@@ -68,13 +196,52 @@ public class Hand {
         } else if (this.getHandRank() > other.getHandRank()) {
             comparison = -1;
         } else {
-            for (int i = 0; i < hand.length; i++) {
-                if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == -1) {
-                    comparison = -1;
-                    break;
-                } else if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == 1) {
+            if(this.getHandRank() == 16) {
+                if(this.getThreeOfAKindValue() > other.getThreeOfAKindValue()) {
                     comparison = 1;
-                    break;
+                } else if (this.getThreeOfAKindValue() < other.getThreeOfAKindValue()) {
+                    comparison = -1;
+                } else {
+                    if (this.getHighestPairValue() > other.getHighestPairValue()) {
+                        comparison = 1;
+                    } else if (this.getHighestPairValue() < other.getHighestPairValue()) {
+                        comparison = -1;
+                    } else {
+                        comparison = 0;
+                    }
+                }
+
+            } else if (this.getHandRank() == 32){
+                if (this.getHighestPairValue() > other.getHighestPairValue()) {
+                    comparison = 1;
+                } else if (this.getHighestPairValue() < other.getHighestPairValue()) {
+                    comparison = -1;
+                } else if (this.getSecondHightestPairValue() > other.getSecondHightestPairValue()) {
+                    comparison = 1;
+                } else if (this.getSecondHightestPairValue() < other.getSecondHightestPairValue()) {
+                    comparison = -1;
+                } else {
+                    for (int i = 0; i < hand.length; i++) {
+                        if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == -1) {
+                            comparison = -1;
+                            break;
+                        } else if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == 1) {
+                            comparison = 1;
+                            break;
+                        }
+                    }
+                }
+    
+                    
+            } else {
+                for (int i = 0; i < hand.length; i++) {
+                    if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == -1) {
+                        comparison = -1;
+                        break;
+                    } else if (this.getCardInHand(i).compareValue(other.getCardInHand(i)) == 1) {
+                        comparison = 1;
+                        break;
+                    }
                 }
             }
         }
@@ -102,6 +269,27 @@ public class Hand {
         return numberOfPairs;
     }
 
+    public int getHighestPairValue() {
+        int highestPairValue = 0;
+        for (int i = 0; i < numberOfCards.length; i++) {
+            if (numberOfCards[i] == 2) {
+                highestPairValue = i;
+            }
+        }
+        return highestPairValue;
+    }
+
+    public int getSecondHightestPairValue() {
+        int secondHightestPairValue = 0;
+        for (int i = 0; i < numberOfCards.length; i++) {
+            if (numberOfCards[i] == 2) {
+                secondHightestPairValue = i;
+                break;
+            }
+        }
+        return secondHightestPairValue;
+    }
+
     public boolean isThreeOfAKind() {
         boolean three = false;
         for (int i = 0; i < numberOfCards.length; i++) {
@@ -112,6 +300,16 @@ public class Hand {
         return three;
     }
 
+    public int getThreeOfAKindValue() {
+        int threeValue = 0;
+        for (int i = 0; i < numberOfCards.length; i++) {
+            if (numberOfCards[i] == 3) {
+                threeValue = i;
+            }
+        }
+        return threeValue;
+    }
+
     public boolean isFourOfAKind() {
         boolean four = false;
         for (int i = 0; i < numberOfCards.length; i++) {
@@ -120,6 +318,16 @@ public class Hand {
             }
         }
         return four;
+    }
+
+    public int getFourOfAKindValue() {
+        int fourValue = 0;
+        for (int i = 0; i < numberOfCards.length; i++) {
+            if (numberOfCards[i] == 3) {
+                fourValue = i;
+            }
+        }
+        return fourValue;
     }
 
     public boolean isFullHouse() {
