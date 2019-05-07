@@ -1,6 +1,7 @@
 /**This class will be a set of cards. Going to have a value based on what the hand is, and a method for comparing two hands to one another to see which one is higher */
 public class Hand {
     public static void main(String[] args) {
+        //Testing the hand class
         Hand testHand = new Hand("AC AC 2H 2C 2C".split(" "));
         Hand otherHand = new Hand("2S 2S 3H 3S 3S".split(" "));
         testHand.printHand();
@@ -15,9 +16,10 @@ public class Hand {
         System.out.println("Hand Rank: " + testHand.getHandRank());
         System.out.println("Which hand wins? " + testHand.compareHands(otherHand));
     }
-    private Card[] hand = new Card[5];
-    private int handRank;
-    private int[] numberOfCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    //Attributes
+    private Card[] hand = new Card[5];//each hand contains 5 cards
+    private int handRank;//for comparing hands
+    private int[] numberOfCards = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//for finding pairs/three-of-a-kind/four-of-a-kind
 
     public Hand(String[] initialHand) {
         for (int i = 0; i < hand.length; i++) {
