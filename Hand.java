@@ -1,4 +1,10 @@
-/**This class will be a set of cards. Going to have a value based on what the hand is, and a method for comparing two hands to one another to see which one is higher */
+/**
+ * File: Hand.java
+ * Author: Michael Sundt
+ * Date: 9 MAY 2019
+ * Purpose: Describes a class for Hand objects, which is composed of Card objects. Provides methods needed to compare
+ *          two Hand objects together to see which one is better.
+ */
 public class Hand {
     public static void main(String[] args) {
         //Testing the hand class
@@ -23,7 +29,7 @@ public class Hand {
     /**Constructor with arguments. */
     public Hand(String[] initialHand) {
         for (int i = 0; i < hand.length; i++) {
-            hand[i] = new Card(initialHand[i]);
+            hand[i] = new Card(initialHand[i]);//Hands are composed of Card objects
         }
         countCards();//populates the numberOfCards array
         sortHand();//sorts the hand so the highest card is at index 0, and so on.

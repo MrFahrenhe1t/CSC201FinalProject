@@ -1,4 +1,14 @@
-/** cards are given in the form ValueSuit, like AD for ace of diamonds
+/** 
+ * File: Card.java
+ * Author: Michael Sundt
+ * Date: 9 MAY 2019
+ * Purpose: Creates a class that describes Card objects. Provides methods to set and get the character
+ *          value of the card, the integer value of the card, and the suit of the card. Provides a method
+ *          to compare to card objects to eachother, and a method to return a String representation of the
+ *          card.
+ * 
+ * 
+ * cards are given in the form ValueSuit, like AD for ace of diamonds
  * Suits: D = Diamonds, H = Hearts, C = Clubs, S = Spades
  * Values: A = Ace, K = King, Q = Queen, J = Jack, T = 10, 9, ..., 2
  */
