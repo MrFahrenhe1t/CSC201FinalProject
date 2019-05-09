@@ -126,7 +126,7 @@ public class Card {
         }
         return intValue;
     }
-
+    /**Main method to test the Card class. */
     public static void main(String[] args) {
         Card card1 = new Card("AD");
         Card card2 = new Card("2S");
